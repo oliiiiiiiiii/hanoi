@@ -206,7 +206,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            background: #ffd93d;
             border: 6px solid #2c3e50;
             border-radius: 30px;
             padding: 40px;
