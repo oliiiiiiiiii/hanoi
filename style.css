@@ -9,7 +9,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4, #45b7d1, #96ceb4);
+    background: whitesmoke;
     background-size: 400% 400%;
     animation: gradientShift 8s ease infinite;
     min-height: 100vh;
@@ -233,10 +233,11 @@ body {
 }
 
 .disk-1 { width: 60px; background: #ff6b6b; }
-.disk-2 { width: 80px; background: #ffd93d; }
-.disk-3 { width: 100px; background: #6bcf7f; }
-.disk-4 { width: 120px; background: #4ecdc4; }
+.disk-2 { width: 80px; background: #ffa46b; }
+.disk-3 { width: 100px; background: #ffd93d; }
+.disk-4 { width: 120px; background: #6bcf7f; }
 .disk-5 { width: 140px; background: #45b7d1; }
+.disk-6 { width: 160px; background: #9b59b6; }
 
 .tower.highlight {
     animation: towerPulse 0.5s ease;

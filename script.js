@@ -4,7 +4,7 @@ let gameState = {
     selectedDisk: null,
     selectedTower: null,
     moves: 0,
-    diskCount: 3,
+    diskCount: null,
     gameWon: false,
     startTime: null,
     timerInterval: null,
@@ -12,8 +12,12 @@ let gameState = {
 };
 
 function startGame() {
+    if (gameState.diskCount === null) {
+        alert("請先選擇圓盤數量！");
+        return;
+    }
     showPage('gamePage');
-    initGame(3);
+    initGame(gameState.diskCount);
     startTimer();
 }
 
@@ -68,7 +72,6 @@ function initGame(diskCount = 3) {
 
     updateDisplay();
     updateMoves();
-    updateMinMoves();
 }
 
 function updateDisplay() {
@@ -175,18 +178,9 @@ function gameWon() {
     const minMoves = Math.pow(2, gameState.diskCount) - 1;
     document.getElementById('finalMoves').textContent = gameState.moves;
     document.getElementById('finalTime').textContent = formatTime(gameState.elapsedTime);
-    document.getElementById('finalMinMoves').textContent = minMoves;
 
     let performanceMsg = '';
-    if (gameState.moves === minMoves) {
-        performanceMsg = '🏆 完美！你用了最少的步數！';
-    } else if (gameState.moves <= minMoves * 1.5) {
-        performanceMsg = '🌟 很棒！你的表現很不錯！';
-    } else if (gameState.moves <= minMoves * 2) {
-        performanceMsg = '👍 不錯！還有進步空間！';
-    } else {
-        performanceMsg = '💪 繼續努力！多練習會更好！';
-    }
+    performanceMsg = '要再來一次嗎？';
     document.getElementById('performanceMsg').textContent = performanceMsg;
 
     setTimeout(() => {
@@ -197,26 +191,26 @@ function gameWon() {
 function resetToStart() {
     stopTimer();
     gameState.elapsedTime = 0;
+    gameState.diskCount = null;
+    document.querySelectorAll('.disk-selector').forEach(b => b.classList.remove('active'));
     showPage('startPage');
 }
 
-document.querySelectorAll('.disk-selector').forEach(btn => {
-    btn.addEventListener('click', function () {
-        if (gameState.gameWon) return;
-
-        document.querySelectorAll('.disk-selector').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        const diskCount = parseInt(this.dataset.disks);
-        stopTimer();
-        initGame(diskCount);
-        startTimer();
+// 移到起始頁面也能選圓盤數量
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.disk-selector').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.disk-selector').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            gameState.diskCount = parseInt(this.dataset.disks);
+        });
     });
-});
 
-document.querySelectorAll('.tower').forEach(tower => {
-    tower.addEventListener('click', function (e) {
-        if (e.target.classList.contains('disk')) return;
-        const towerIndex = parseInt(this.dataset.tower);
-        selectTower(towerIndex);
+    document.querySelectorAll('.tower').forEach(tower => {
+        tower.addEventListener('click', function (e) {
+            if (e.target.classList.contains('disk')) return;
+            const towerIndex = parseInt(this.dataset.tower);
+            selectTower(towerIndex);
+        });
     });
 });
