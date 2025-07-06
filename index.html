@@ -1,10 +1,11 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memphis風格河內塔</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,39 +16,66 @@
         <div class="shape"></div>
     </div>
 
-    <div class="container">
-        <h1 class="title">河內塔大挑戰</h1>
-
-        <div class="controls">
-            <button class="disk-selector active" data-disks="3">3個圓盤</button>
-            <button class="disk-selector" data-disks="4">4個圓盤</button>
-            <button class="disk-selector" data-disks="5">5個圓盤</button>
-            <button class="reset-btn" onclick="resetGame()">重新開始</button>
+    <!-- 起始頁面 -->
+    <div class="page active" id="startPage">
+        <div class="start-page">
+            <h1 class="start-title">河內塔大挑戰</h1>
+            <p class="start-subtitle">準備好挑戰經典益智遊戲了嗎？</p>
+            <button class="start-btn" onclick="startGame()">開始遊戲</button>
         </div>
+    </div>
 
-        <div class="game-info">
-            <div class="info-box">步數: <span id="moves">0</span></div>
-        </div>
+    <!-- 遊戲頁面 -->
+    <div class="page" id="gamePage">
+        <div class="container">
+            <h1 class="title">河內塔大挑戰</h1>
 
-        <div class="game-board">
-            <div class="tower" data-tower="0">
-                <div class="tower-pole"></div>
-                <div class="tower-base"></div>
+            <div class="controls">
+                <button class="disk-selector active" data-disks="3">3個圓盤</button>
+                <button class="disk-selector" data-disks="4">4個圓盤</button>
+                <button class="disk-selector" data-disks="5">5個圓盤</button>
+                <button class="reset-btn" onclick="resetToStart()">重新開始</button>
             </div>
-            <div class="tower" data-tower="1">
-                <div class="tower-pole"></div>
-                <div class="tower-base"></div>
+
+            <div class="game-info">
+                <div class="info-box">步數: <span id="moves">0</span></div>
+                <div class="info-box">最少步數: <span id="minMoves">7</span></div>
+                <div class="info-box">時間: <span id="timer">00:00</span></div>
             </div>
-            <div class="tower" data-tower="2">
-                <div class="tower-pole"></div>
-                <div class="tower-base"></div>
+
+            <div class="game-board">
+                <div class="tower" data-tower="0">
+                    <div class="tower-pole"></div>
+                    <div class="tower-base"></div>
+                </div>
+                <div class="tower" data-tower="1">
+                    <div class="tower-pole"></div>
+                    <div class="tower-base"></div>
+                </div>
+                <div class="tower" data-tower="2">
+                    <div class="tower-pole"></div>
+                    <div class="tower-base"></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="victory-message" id="victoryMessage">
-        <div>🎉 恭喜完成！ 🎉</div>
-        <div>你用了 <span id="finalMoves"></span> 步完成遊戲</div>
+    <!-- 結果頁面 -->
+    <div class="page" id="resultPage">
+        <div class="result-page">
+            <h1 class="result-title">🎉 恭喜完成！ 🎉</h1>
+            <div class="result-info">
+                <div class="result-stats">
+                    <div class="stat-item">你用了 <span id="finalMoves"></span> 步</div>
+                    <div class="stat-item">花費時間 <span id="finalTime"></span></div>
+                    <div class="stat-item">最少步數 <span id="finalMinMoves"></span> 步</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <span id="performanceMsg"></span>
+                </div>
+            </div>
+            <button class="start-btn" onclick="resetToStart()">再玩一次</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
