@@ -140,7 +140,7 @@ function selectTower(towerIndex) {
             updateMoves();
             updateDisplay();
 
-            if (gameState.towers[2].length === gameState.diskCount) {
+            if (gameState.towers[2].length === gameState.diskCount || gameState.towers[1].length === gameState.diskCount ) {
                 gameWon();
             }
 
