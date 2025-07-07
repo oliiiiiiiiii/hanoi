@@ -264,7 +264,7 @@ body {
 .result-stats {
     display: flex;
     gap: 30px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     flex-wrap: wrap;
     justify-content: center;
 }
