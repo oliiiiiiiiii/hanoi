@@ -180,7 +180,7 @@ function gameWon() {
     document.getElementById('finalTime').textContent = formatTime(gameState.elapsedTime);
 
     let performanceMsg = '';
-    performanceMsg = '要再來一次嗎？';
+    performanceMsg = `這是你玩 ${gameState.diskCount} 個圓盤的結果`;
     document.getElementById('performanceMsg').textContent = performanceMsg;
 
     setTimeout(() => {
